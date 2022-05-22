@@ -21,9 +21,9 @@ scene.add(mesh);
 // scene.add(axesHelper);
 mesh.rotation.reorder("YXZ");
 
-mesh.rotation.x = Math.PI / 0.01;
-mesh.rotation.y = Math.PI / 0.05;
-mesh.position.set(1, 2, 1);
+// mesh.rotation.x = Math.PI / 0.01;
+// mesh.rotation.y = Math.PI / 0.05;
+// mesh.position.set(1, 2, 1);
 
 //
 
@@ -58,21 +58,23 @@ const tick = () => {
   // const deltaTime = currentTime - time;
   // time = currentTime;
   // console.log(deltaTime);
-  const elapsedTime = clock.getElapsedTIme();
-
+  const elapsedTime = clock.getElapsedTime();
+  console.log(elapsedTime);
   // Update objects
-  // mesh.rotation.x += 0.001 * deltaTime;
-  mesh.rotation.y += 0.001;
-  // mesh.position.y += 0.01;
-  // mesh.position.x += 0.01;
+  // mesh.rotation.y += 0.004;
+  mesh.rotation.x = Math.cos(elapsedTime);
+  mesh.position.y = Math.sin(elapsedTime);
+  // mesh.position.x = +2;
+  camera.lookAt(mesh.position);
+
   // Render
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
   window.requestAnimationFrame(tick);
 };
-
-// tick(window.requestAnimationFrame);
+tick();
+//  tick(window.requestAnimationFrame);
 //
 renderer.setSize(sizes.width, sizes.height);
 renderer.render(scene, camera);
